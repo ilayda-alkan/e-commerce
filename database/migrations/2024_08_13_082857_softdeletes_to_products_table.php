@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('SoftdeletesToProductsTable', function (Blueprint $table) {
             $table->id();
+            $table->boolean('status');
             $table->timestamps();
         });
     }
