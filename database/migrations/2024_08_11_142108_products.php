@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedBigInteger('category_id');
             $table->string('barcode')->unique();
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(1);
             $table->integer('quantity')->default(0);
             $table->decimal('price', total: 8, places: 2);
             $table->timestamps();

@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Admin Users List</h1>
 
-
+    <!-- Toplu Silme Formu -->
     <form 
         action="{{ route('user.bulkDelete') }}" method="POST" id="bulk-delete-form">
         @csrf
@@ -43,12 +43,11 @@
                 @endforeach
             </tbody>
         </table>
-        </div>
-    </form> 
+ 
     <div class="d-flex justify-content-end mb-3 pr-3">
         <button type="submit" class="btn btn-danger">Delete selected</button>
     </div>
-    
+</form>
 
 
 {{-- @section('scripts')

@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <label for="email">E-mail:</label>
-            <input type="text" name="email" id="email" class="form-control" value="{{ old('email', $user->user_title) }}" required>
+            <input type="text" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}" required>
             @error('email')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
