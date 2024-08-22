@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <script src="{{asset('https://cdn.jsdelivr.net/npm/sweetalert2@11')}} "></script>
 </head>
 
 <body id="page-top">
@@ -72,23 +74,20 @@
         </div>
     </li> 
 
-    {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-bookmark"></i>
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
             <span>Products</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="{{ route('product.list') }}">Product List</a>
+                <a class="collapse-item" href="{{ route('product.insert') }}">Product Insert</a>
+                <div class="collapse-divider"></div>
             </div>
         </div>
-    </li>  --}}
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

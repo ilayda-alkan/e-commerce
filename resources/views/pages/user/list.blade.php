@@ -30,17 +30,38 @@
                     <td>{{ $user->created_at->format('d-m-Y H:i') }}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                        
-                        <!-- Silme Formu -->
-                        <form action="{{ route('user.destroy', $user->id) }}" method="GET" style="display:inline;" 
-                            onsubmit="return confirm('Are you sure you want to delete this user?');">
+
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;" 
+                            class="delete-user-form">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger btn-sm delete-user-button">Delete</button>
                     </td>
                 </tr>
-                
                 @endforeach
+                    <script>
+                        document.querySelectorAll('.delete-user-button').forEach(button => {
+                            button.addEventListener('click', function(event) {
+                                event.preventDefault();
+                    
+                                const form = this.closest('form'); // Butona en yakın formu bulur
+                    
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "You want to delete this user!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        form.submit(); // Formu onay alındığında gönderir
+                                    }
+                                });
+                            });
+                        });
+                    </script>
             </tbody>
         </table>
  

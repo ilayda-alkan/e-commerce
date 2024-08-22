@@ -21,20 +21,19 @@ class CategoryController extends Controller
     }
     public function create(Request $request)
     {
-    //  dd($request);
-             $request -> validate([
-            'title'=> 'required',
+        $request -> validate([
+            'title' => 'unique:categories,title',
             'description' =>'required',
             'status' => 'nullable|boolean'
 
         ]);
         $status = $request->has('status') ? true : false;
 
-        $isCategory = Category::where('title',$request->title)->first();
+        // $isCategory = Category::where('title',$request->title)->first();
  
-         if($isCategory) {
-            return redirect()->back()->withErrors(['category' => 'This category is already registered.']);
-         }
+        //  if($isCategory) {
+        //     return redirect()->back()->withErrors(['category' => 'This category is already registered.']);
+        //  }
 
          Category::create([
             'title' => $request->title,
@@ -43,7 +42,6 @@ class CategoryController extends Controller
 
          ]);
 
-      
          return redirect()->route('category.list');
     }
 
@@ -73,7 +71,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $categories = Category::find($id);
+        $categories = Category::findOrFail($id);
         $categories ->delete();
         return redirect()->route('category.list')->with('success','Category deleted successfully');  
     }
