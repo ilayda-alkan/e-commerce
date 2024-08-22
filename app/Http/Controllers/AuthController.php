@@ -37,10 +37,8 @@ class AuthController extends Controller
         }
 
         if ($user && (Hash::check($credentials['password'], $user->password))) {
-            // Store user information in session
+          
             Session::put('user', $user);
-
-            // Redirect to the home
             return redirect()->route('home');
         }
         

@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function list()  {
         $users = User::all();
-        return view('pages.user.list', ['users' => $users]);
+        return view('pages.user.list', compact('users'));
     }
 
     public function insert()
@@ -36,6 +36,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request ->password
+            
         ]);
 
         return redirect()->route('user.list');
