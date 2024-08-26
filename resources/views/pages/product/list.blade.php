@@ -4,7 +4,6 @@
     <div class="container">
         <h1>Product List</h1>
 
-        <!-- Filter Form -->
         <form method="GET" action="{{ route('product.list') }}">
             <div class="form-group">
                 <label for="category">Category:</label>
@@ -20,7 +19,6 @@
             <button type="submit" class="btn btn-primary">Filter</button>
         </form>
 
-        <!-- Bulk Delete Form -->
         <form action="{{ route('product.bulkDelete') }}" method="POST" id="bulk-delete-form">
             @csrf
             @method('DELETE')
@@ -50,11 +48,8 @@
                             <td>{{ $product->price }}</td>
                             <td>
                                 <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Are you want to delete this product?');" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                <a onclick="globalSweetAlert('Are you sure?', 'You want to delete this product!', 'warning', ' {{route('product.destroy', $product->id) }}' ,true,true,'Yes,delete it')" class="btn btn-danger btn-sm text-white">Delete</a>
+                            
                             </td>
                         </tr>
                     @endforeach
@@ -62,7 +57,7 @@
             </table>
 
             <div class="d-flex justify-content-end mb-3 pr-3">
-                <button type="submit" class="btn btn-danger">Delete selected</button>
+                <button type="submit" class="btn btn-danger btn-sm ">Delete selected</button>
             </div>
         </form>
 

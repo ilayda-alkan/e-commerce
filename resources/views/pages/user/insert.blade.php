@@ -37,7 +37,11 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" onclick="globalSweetAlert(
+            'Success!', 
+            'User has been inserted successfully.', 
+            'success',null,false,false,'OK' )" class="btn btn-primary btn-sm">Add</button>
+
     </form>
 </div>
 @endsection

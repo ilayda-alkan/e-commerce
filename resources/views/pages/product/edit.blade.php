@@ -28,7 +28,7 @@
             <select id="category" name="category_id" class="form-control">
                 <option value="">Select</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                    <option value="{{ $category->id }}" {{ (isset($product) && $product->category_id == $category->id) ? 'selected' : '' }}>
                         {{ $category->title }}
                     </option>
                 @endforeach
@@ -59,7 +59,11 @@
             <input type="number" class="form-control" id="price" name="price" value="{{ old('price', $product->price) }}" step="0.01" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update Product</button>
+        <button onclick="globalSweetAlert(
+        'Success!', 
+        'product has been updated successfully.', 
+        'success',null,false,false,'Great!')" class="btn btn-primary btn-sm">Update Product</button>
+        <a href="{{ route('product.list') }}" class="btn btn-secondary btn-sm">Cancel</a>
     </form>
 </div>
 @endsection

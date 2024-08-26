@@ -37,8 +37,12 @@
             <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-primary">Update User</button>
-        <a href="{{ route('user.list') }}" class="btn btn-secondary">Cancel</a>
+        <button onclick="globalSweetAlert(
+        'Success!', 
+        'User has been updated successfully.', 
+        'success',null,false,false,'Great!')" class="btn btn-primary btn-sm">Update User</button>
+
+        <a href="{{ route('user.list') }}" class="btn btn-secondary btn-sm">Cancel</a>
     </form>
 </div>
 @endsection

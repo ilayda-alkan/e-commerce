@@ -3,14 +3,11 @@
 @section('content')
 <div class="container">
     <h1>Admin Users List</h1>
-
-    <!-- Toplu Silme Formu -->
     <form 
         action="{{ route('user.bulkDelete') }}" method="POST" id="bulk-delete-form">
         @csrf
         @method('DELETE')
       
-    
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -31,54 +28,28 @@
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;" 
-                            class="delete-user-form">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn btn-danger btn-sm delete-user-button">Delete</button>
+                        <a onclick="globalSweetAlert('Are you sure?', 'You want to delete this user!', 'warning', ' {{route('user.destroy', $user->id) }}' ,true,true,'Yes,delete it')" class="btn btn-danger btn-sm text-white">Delete</a>
+
                     </td>
                 </tr>
                 @endforeach
-                    <script>
-                        document.querySelectorAll('.delete-user-button').forEach(button => {
-                            button.addEventListener('click', function(event) {
-                                event.preventDefault();
-                    
-                                const form = this.closest('form'); // Butona en yakın formu bulur
-                    
-                                Swal.fire({
-                                    title: 'Are you sure?',
-                                    text: "You want to delete this user!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Yes, delete it!'
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        form.submit(); // Formu onay alındığında gönderir
-                                    }
-                                });
-                            });
-                        });
-                    </script>
             </tbody>
         </table>
  
     <div class="d-flex justify-content-end mb-3 pr-3">
-        <button type="submit" class="btn btn-danger">Delete selected</button>
+        <button type="submit" class="btn btn-danger btn-sm">Delete selected</button>
     </div>
+
+</div>
 </form>
 
-
-{{-- @section('scripts')
 <script>
-document.getElementById('select-all').addEventListener('click', function() {
-    const isChecked = this.checked;
-    document.querySelectorAll('input[name="user_ids[]"]').forEach(checkbox => {
-        checkbox.checked = isChecked;
-    });
-});
+    document.getElementById('select-all').onclick = function() {
+        var checkboxes = document.querySelectorAll('input[name="user_ids[]"]');
+        for (var checkbox of checkboxes) {
+            checkbox.checked = this.checked;
+        }
+    }
+  
 </script>
-@endsection --}}
 @endsection

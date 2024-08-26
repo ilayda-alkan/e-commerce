@@ -38,7 +38,10 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" onclick="globalSweetAlert(
+            'Success!', 
+            'Category has been inserted successfully.', 
+            'success',null,false,false,'OK' )" class="btn btn-primary btn-sm">Add</button>
     </form>
 </div>
 @endsection

@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label for="status">Status </label>&nbsp&nbsp
-            <input type="checkbox" id="status" name="status" value="1"  {{ old('status', isset($product) ? $product->status : true) ? 'checked' : '' }}>
+            <input type="checkbox" id="status" name="status" value="0"  {{ old('status', isset($product) ? $product->status : false) ? 'checked' : '' }}>
             <span>{{ old('status', isset($product) ? ($product->status ? 'True' : 'False') : 'True') }}</span>
             @error('status')
                 <div class="text-danger">{{ $message }}</div>
@@ -59,7 +59,11 @@
             <input type="text" name="price" id="price" class="form-control" value="{{ old('price') }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" onclick="globalSweetAlert(
+        'Success!', 
+        'Product has been inserted successfully.', 
+        'success',null,false,false,'OK' )" class="btn btn-primary btn-sm">Add</button>
+
     </form>
 </div>
 @endsection

@@ -73,7 +73,7 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|string',
             'category_id' => 'nullable|exists:categories,id',
-            'barcode' =>'unique:products,barcode|min:6|max:8',
+            'barcode' =>'required|min:6|max:8',
             'status'=>'nullable|boolean',
             'quantity'=>'required|integer',
             'price' =>'required|numeric'

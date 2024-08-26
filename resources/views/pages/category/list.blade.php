@@ -3,7 +3,6 @@
 <div class="container">
     <h1>Category List</h1>
 
-      <!-- Toplu silme formu -->
       <form
       action="{{ route('category.bulkDelete') }}" method="POST" id="bulk-delete-form">
         @csrf
@@ -32,32 +31,23 @@
                     <td>
                         <a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         
-                        <!-- Silme Formu -->
-                        <form action="{{ route('category.destroy', $category->id) }}" method="GET" style="display:inline;" 
-                            onsubmit="return confirm('Are you sure you want to delete this category?');">
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                        <a onclick="globalSweetAlert('Are you sure?', 'You want to delete this category!', 'warning', ' {{route('category.destroy', $category->id) }}',true,true,'Yes,delete it')" class="btn btn-danger btn-sm text-white">Delete</a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-  
-            <!-- Toplu silme butonu -->
             <div class="d-flex justify-content-end mb-3 pr-3">
-                <button type="submit" class="btn btn-danger">Delete selected</button>
+                <button type="submit" class="btn btn-danger btn-sm">Delete selected</button>
             </div>
         </form>
 
-{{-- @section('scripts')
-<script>
-document.getElementById('select-all').addEventListener('click', function() {
-    const isChecked = this.checked;
-    document.querySelectorAll('input[name="category_ids[]"]').forEach(checkbox => {
-        checkbox.checked = isChecked;
-    });
-});
-</script>
-@endsection --}}
+        <script>
+            document.getElementById('select-all').onclick = function() {
+                var checkboxes = document.querySelectorAll('input[name="product_ids[]"]');
+                for (var checkbox of checkboxes) {
+                    checkbox.checked = this.checked;
+                }
+            }
+        </script>
 @endsection
