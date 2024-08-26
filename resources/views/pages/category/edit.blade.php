@@ -32,8 +32,11 @@
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Update Category</button>
-         <a href="{{ route('category.list') }}" class="btn btn-secondary">Cancel</a>
+        <button onclick="globalSweetAlert(
+            'Success!', 
+            'Category has been updated successfully.', 
+            'success',null,false,false,'Great!')" class="btn btn-primary btn-sm">Update Category</button>
+         <a href="{{ route('category.list') }}" class="btn btn-secondary btn-sm">Cancel</a>
     </form>
 </div>
 @endsection

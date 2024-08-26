@@ -39,7 +39,7 @@ class UserController extends Controller
             
         ]);
 
-        return redirect()->route('user.list');
+        return redirect()->route('user.list')->with('success', 'User created successfully.');;
 
     }
 
